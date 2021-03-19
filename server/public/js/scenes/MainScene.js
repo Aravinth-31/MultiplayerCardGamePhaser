@@ -116,7 +116,6 @@ class MainScene extends Phaser.Scene {
             })
             self.socket.emit("updateZone", { id: self.socket.id, value: gameObject.value });
             gameObject.destroy();
-            console.log(zone.data.list.cards);
             if (zone.data.list.cards == 3)
                 self.socket.emit("calculateScore");
             graphics.clear();
@@ -139,7 +138,6 @@ class MainScene extends Phaser.Scene {
             playingCard.value = card;
             this.input.setDraggable(playingCard);
             this.players.add(playingCard);
-            console.log(this.players.getChildren());
         })
     }
 }

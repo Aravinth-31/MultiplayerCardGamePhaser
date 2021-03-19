@@ -30,7 +30,6 @@ function preload() {
 
 function create() {
   const self = this;
-  this.players = this.physics.add.group();
 
   this.deck = Phaser.Utils.Array.NumberArray(0, 51);
   Phaser.Utils.Array.Shuffle(this.deck);
