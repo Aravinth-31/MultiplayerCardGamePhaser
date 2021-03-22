@@ -33,6 +33,7 @@ function create() {
 
   this.deck = Phaser.Utils.Array.NumberArray(0, 51);
   Phaser.Utils.Array.Shuffle(this.deck);
+  console.log(self.deck);
 
   io.on('connection', function (socket) {
     console.log('a user connected ' + socket.id);
@@ -50,7 +51,6 @@ function create() {
     socket.on('disconnect', function () {
       console.log('user disconnected ' + socket.id);
       delete players[socket.id];
-      console.log(players);
       playerCount--;
     });
     socket.on("updateZone", (obj) => {
@@ -64,7 +64,6 @@ function create() {
       values.sort((a, b) => { return b - a })
       values=Array.from(new Set(values));
       values.forEach((val, i) => {
-        console.log(val,i);
         Object.keys(players).forEach((player, index) => {
           if (players[player].dropCardValue == val) {
             if (i == 0)
@@ -84,6 +83,14 @@ function create() {
       console.log("GameEnd");
       socket.emit("announceWinner",players);
     })
+    socket.on("restart",function(){
+      console.log("restarted");
+      Phaser.Utils.Array.Shuffle(self.deck);
+      console.log(self.deck);
+      self.time.delayedCall(2000,()=>{
+        io.emit("start",players);
+      })
+    });
   });
 }
 
