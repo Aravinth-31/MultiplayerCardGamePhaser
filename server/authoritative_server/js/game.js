@@ -10,13 +10,6 @@ const config = {
     parent: 'cardGame',
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  physics: {
-    default: 'arcade',
-    arcade: {
-      debug: false,
-      gravity: { y: 0 }
-    }
-  },
   scene: {
     preload: preload,
     create: create,

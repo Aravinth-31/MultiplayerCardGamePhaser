@@ -1,14 +1,15 @@
 const path = require('path');
-const jsdom = require('jsdom');
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+
 const Datauri = require('datauri');
-
 const datauri = new Datauri();
-const { JSDOM } = jsdom;
 
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+  
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {

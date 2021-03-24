@@ -10,7 +10,7 @@ class MainScene extends Phaser.Scene {
     create() {
         var self = this;
         this.socket = io();
-        this.players = this.physics.add.group();
+        this.players = this.add.group();
         this.cards = [];
         this.scores = {};
         this.playingCards = this.add.group();
